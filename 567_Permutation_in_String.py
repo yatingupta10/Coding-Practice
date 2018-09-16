@@ -40,7 +40,3 @@ for i in substrings_s1:
 		print "True"
 		break
 
-# for i in perm_list:
-# 	if i in s1:
-# 		print "T"
-# 		break
