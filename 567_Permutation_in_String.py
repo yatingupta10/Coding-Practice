@@ -44,4 +44,3 @@ for i in substrings_s1:
 # 	if i in s1:
 # 		print "T"
 # 		break
-# print perm_list
