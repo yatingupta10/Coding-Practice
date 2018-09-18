@@ -20,23 +20,40 @@ s1 = raw_input("input 2 string: ")
 
 # perm_list = list(set(perm_list))
 
-char_map = {x:0 for x in s}
+# char_map = {x:0 for x in s}
 
-for i in range(len(s)):
-	char_map[s[i]] += 1
-# print char_map
-substrings_s1 = [s1[i:i+len(s)] for i in xrange(len(s1) - len(s) + 1)]
-print substrings_s1
+# for i in range(len(s)):
+# 	char_map[s[i]] += 1
+# # print char_map
+# substrings_s1 = [s1[i:i+len(s)] for i in xrange(len(s1) - len(s) + 1)]
+# print substrings_s1
 
-substrings_s1_1 = {k:v for k,v in char_map.items()}
-print substrings_s1_1
-for i in substrings_s1:
-	substrings_s1_1 = {k:v for k,v in char_map.items()}
-	for letter in i:
-		if letter in substrings_s1_1:
-			# print "++++++++++++++"
-			substrings_s1_1[letter] -= 1
-	if all(x==0 for x in substrings_s1_1.values()) == True:
-		print "True"
-		break
+# substrings_s1_1 = {k:v for k,v in char_map.items()}
+# print substrings_s1_1
+# for i in substrings_s1:
+# 	substrings_s1_1 = {k:v for k,v in char_map.items()}
+# 	for letter in i:
+# 		if letter in substrings_s1_1:
+# 			# print "++++++++++++++"
+# 			substrings_s1_1[letter] -= 1
+# 	if all(x==0 for x in substrings_s1_1.values()) == True:
+# 		print "True"
+# 		break
 
+
+##########################Actual Code#################################################
+class Solution(object):
+    
+    def checkInclusion(self, s1, s2):
+		l1 = [0]*26
+        l2 = [0]*26
+        for x in s1:
+            l1[ord(x) - ord('a')] += 1
+        
+        for i in xrange(len(s2)):
+            l2[ord(s2[i]) - ord('a')] += 1
+            if i >= len(s1):
+                l2[ord(s2[i-len(s1)]) - ord('a')] -= 1
+            if l1 == l2:
+                return True
+        return False
